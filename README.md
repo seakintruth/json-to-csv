@@ -7,13 +7,13 @@ This python script converts valid, preformatted JSON to CSV which can be opened 
 This script can handle nested json with multiple objects and arrays.
 Please see the explanation below and the sample files to understand how this works. It can handle non similar objects too. But, more the similarity of the objects, prettier the output.
 
-Written in Python 2.7
+Written in Python 2.7. Last tested in Python 3.6.3.
 
 Usage
 -----
 
 ```
-python /path/to/json_to_csv.py node_name json_in_file_path csv_out_file_path 
+python /path/to/json_to_csv.py node json_in_file_path csv_out_file_path
 ```
 
 Source Specification
@@ -49,6 +49,7 @@ Ex:-
     }
 ```
 * The JSON can be a `list` of `dictionaries`
+* If your JSON is a list of dictionaries, the first argument `node` can be any relevant string
 ```python
     [
         {
@@ -72,7 +73,6 @@ Ex:-
         }
     ]
 ```
-* `node_name` can be any relevant string if the JSON is a list of dictionaries
 
 Gotchas
 -------

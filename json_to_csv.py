@@ -1,26 +1,3 @@
-##
-# This is as simple as a license can get. Please read 
-# carefully and understand before using.
-#
-# I wrote this script because I needed it. I am opening
-# up the source code to the world because I believe in 
-# the power of royalty free knowledge and shared ideas.
-#
-# 1. This piece of code comes to you at no cost and no 
-#    obligations.
-# 2. You get NO WARRANTIES OR GUARANTEES OR PROMISES of
-#    any kind.
-# 3. If you are using this script you understand the risks
-#    completely.
-# 4. I request and insist that you retain this notice without
-#    modification, but if you can't... I understand.
-#
-# --
-# Vinay Kumar N P 
-# vinay@askvinay.com
-# www.askVinay.com
-##
-
 import sys
 import json
 import csv
@@ -83,7 +60,7 @@ def reduce_item(key, value):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print "\nUsage: python json_to_csv.py <node_name> <json_in_file_path> <csv_out_file_path>\n"
+        print ("\nUsage: python json_to_csv.py <node> <json_in_file_path> <csv_out_file_path>\n")
     else:
         #Reading arguments
         node = sys.argv[1]
@@ -93,7 +70,8 @@ if __name__ == "__main__":
         fp = open(json_file_path, 'r')
         json_value = fp.read()
         raw_data = json.loads(json_value)
-
+        fp.close()
+        
         try:
             data_to_be_processed = raw_data[node]
         except:
@@ -112,10 +90,10 @@ if __name__ == "__main__":
         header = list(set(header))
         header.sort()
 
-        with open(csv_file_path, 'wb+') as f:
+        with open(csv_file_path, 'w+') as f:
             writer = csv.DictWriter(f, header, quoting=csv.QUOTE_ALL)
             writer.writeheader()
             for row in processed_data:
                 writer.writerow(row)
 
-        print "Just completed writing csv file with %d columns" % len(header)
+        print ("Just completed writing csv file with %d columns" % len(header))
